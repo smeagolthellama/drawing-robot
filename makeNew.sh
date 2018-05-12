@@ -11,3 +11,6 @@ echo "done."
 echo -n "converting to drawable... "
 convert "$name.png" -canny 0x1+10%+30% "$name.edges.png"
 echo "done."
+
+# call whatever is used to obtain coordinates for drawing (just an example, assuming you use python)
+#python coords.py > "$name.txt"
