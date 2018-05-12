@@ -10,4 +10,4 @@ echo "done."
 # use imagemagick to get lines, instead of colours. (no idea what the numbers do, but all examples had them, so leaving them in.)
 echo -n "converting to drawable... "
 convert "$name.png" -canny 0x1+10%+30% "$name.edges.png"
-evho "done."
+echo "done."
