@@ -11,6 +11,6 @@ echo -n "converting to drawable... "
 convert "$name.png" -canny 0x1+10%+30% "$name.edges.png"
 echo "done."
 
-# use the Go script to generate the coordinates of all white pixels
-echo -n "obtaining coordinates... "
-go run CoordGen.go "$name.edges.png"
+# don't use the Go script to generate the coordinates of all white pixels, because it takes a long time. This ought to be part of the drawing routine, not the image generation routine (i.e.: the user has a large selecion of images, without megabyte/gigabyte files cluttering up their disk)
+#echo -n "obtaining coordinates... "
+#go run CoordGen.go "$name.edges.png"
