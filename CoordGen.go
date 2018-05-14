@@ -19,6 +19,8 @@ func gracefulExit(message string) {
 }
 
 func main() {
+	fmt.Println("Obtaining coordinates... ")
+	
 	// If the user does not provide an image file, exit the application
 	if len(os.Args) == 1 {
 		gracefulExit("Please provide an image file.")
