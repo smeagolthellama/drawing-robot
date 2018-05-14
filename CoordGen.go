@@ -44,7 +44,7 @@ func main() {
 	}
 
 	// Write coordinates to file, if possible
-	err = writeCoordinates(coordinates)
+	err = writeCoordinates(coordinates, arg)
 	if err != nil {
 		gracefulExit("Couldn't write to file!")
 	} else {
@@ -81,13 +81,15 @@ func getCoordinates(file io.Reader) ([]Coordinate, error) {
 	return coordinates, nil
 }
 
-func writeCoordinates(coords []Coordinate) error {
+func writeCoordinates(coords []Coordinate, name string) error {
 	/**
 	 * Writes the coordinates to a file.
 	 * @param {[]Coordinate} coords - the array of coordinates
+	 * @param {string} name - the input file name
 	 * @returns {error}
 	 */
-	file, err := os.Create("output.txt") // Re-create the file at every execution
+	outputName := getOutputName(name)
+	file, err := os.Create(outputName) // Re-create the file at every execution
 	if err != nil {
 		return err
 	}
@@ -107,6 +109,17 @@ func writeCoordinates(coords []Coordinate) error {
 	}
 
 	return nil
+}
+
+func getOutputName(input string) string {
+	/**
+	 * Creates the name of the output file from the input file
+	 * @param {string} source - the image file name provided as an argument
+	 * @returns {string}
+	 */
+	s := strings.Split(input, ".")
+	outputName := s[0] + ".coords.txt"
+	return outputName
 }
 
 // Coordinate - represents the X-Y coordinates of a single pixel
