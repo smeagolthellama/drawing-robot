@@ -1,19 +1,13 @@
-all: image coords draw
+all: $(shell date +%s).svg %.draw
 
-image: makeNew.sh
-	@./makeNew.sh
+%.svg: %.edges.ppm
+	potrace --svg $^
 
-coords: CoordGen.go
-	@go run CoordGen.go $(shell find * -maxdepth 1 -name '*.edges.png' | sort -t_ -nk2,2 | tail -n1)
+%.edges.ppm: %.png
+	convert $^ -canny 0x1+10%+30% $@ #I think...
 
-draw:
-	@#TODO: implement, complain about it for the moment.
-	@echo "sorry, drawing is currently not implemented. Hope you got some pretty pictures!"
+%.png:
+	evolvotron_mutate -g | evolvotron_render -s 1024x1024 $*.png
 
-clean-images:
-	@-rm *.png
-
-clean-coords:
-	@-rm *.txt
-
-clean-all: clean-images clean-coords
+%.draw: %.svg
+	#TODO: implement
