@@ -5,6 +5,7 @@ Source code for a Raspberry Pi-based drawing robot. This robot will draw lines f
  * Evolvotron
  * ImageMagick
  * Go
+ * potrace
 
 ## Getting Started
 
@@ -12,7 +13,7 @@ Before doing anything make sure you have the correct packages installed on your 
 
 ```
 sudo apt update && sudo apt upgrade
-sudo apt install evolvotron imagemagick golang-go
+sudo apt install evolvotron imagemagick golang-go potrace
 ```
 
 Clone the repository:
@@ -27,11 +28,8 @@ To generate a new image and a file with coordinates, as well as drawing the pict
 ```
 make 
 ```
-To just get the pretty pictures,
+To just get the pretty pictures, come up with a name, and run
 ```
-make image
+make image.edges.ppm
 ```
-or 
-```
-./makeNew.sh
-```
+where `image` is the name you came up with.
