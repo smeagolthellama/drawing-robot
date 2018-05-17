@@ -1,4 +1,4 @@
-all: $(shell date +%s).svg %.draw
+all: $(shell date +%s).draw
 
 .PRECIOUS: %.svg %.png
 %.svg: %.edges.ppm
@@ -8,7 +8,15 @@ all: $(shell date +%s).svg %.draw
 	convert $^ -canny 0x1+10%+30% $@ #I think...
 
 %.png:
-	evolvotron_mutate -g | evolvotron_render -s 1024x1024 $*.png
+	evolvotron_mutate -g | evolvotron_render -s 1024x1024 $@
 
 %.draw: %.svg
 	#TODO: implement
+
+clean: clean-images clean-patterns
+
+clean-images:
+	rm *.png
+
+clean-patterns:
+	rm *.svg
