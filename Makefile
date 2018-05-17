@@ -1,5 +1,6 @@
 all: $(shell date +%s).svg %.draw
 
+.PRECIOUS: %.svg %.png
 %.svg: %.edges.ppm
 	potrace --svg $^
 
