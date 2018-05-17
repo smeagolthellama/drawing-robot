@@ -4,7 +4,6 @@ Source code for a Raspberry Pi-based drawing robot. This robot will draw lines f
 ## Dependencies:
  * Evolvotron
  * ImageMagick
- * Go
  * potrace
 
 ## Getting Started
@@ -13,7 +12,7 @@ Before doing anything make sure you have the correct packages installed on your 
 
 ```
 sudo apt update && sudo apt upgrade
-sudo apt install evolvotron imagemagick golang-go potrace
+sudo apt install evolvotron imagemagick potrace
 ```
 
 Clone the repository:
