@@ -29,6 +29,6 @@ make
 ```
 To just get the pretty pictures, come up with a name, and run
 ```
-make image.edges.ppm
+make image.edges.svg
 ```
 where `image` is the name you came up with.
