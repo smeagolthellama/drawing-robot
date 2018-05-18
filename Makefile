@@ -12,6 +12,7 @@ all: $(shell date +%s).draw
 
 %.draw: %.svg
 	#TODO: implement
+	perl draw.pl
 
 clean: clean-images clean-patterns
 
