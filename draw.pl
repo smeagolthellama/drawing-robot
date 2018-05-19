@@ -40,3 +40,35 @@ for(1..10){
 you will notice that it is significantly shorter.
 Also, this module provides servo controlls, as well as a heap of other things. see https://metacpan.org/pod/RPi::WiringPi for full list.
 =cut
+
+my $pi=RPi::WiringPi->new();
+
+print "what pin is the pen's solonoid on (0 for default)?";
+
+my $inpin=<>;
+while ($inpin !~/^[0-9]+$/ or $inpin<0 or $inpin>40){
+	print "please input an interger between 0 and 40.";
+	$inpin=<>;
+}
+
+if($inpin==0){
+	$inpin=21;
+}
+my $pen=$pi->pin($inpin);
+$pen->mode(1);
+
+sub pendown{
+	$pen->write(1);	
+	print "pen down\n";
+}
+
+sub penup{
+	$pen->write(0);
+	print "pen up\n";
+}
+
+pendown;
+
+sleep 1;
+
+penup;
