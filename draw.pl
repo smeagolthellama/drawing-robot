@@ -6,7 +6,7 @@ use strict;
 ## instead.
 # Works!
 use RPi::WiringPi; #for gpio pins 
-use RPi::Const;    #ditto
+use RPi::Const ':all';    #ditto
 #
 use Image::SVG::Path;
 =pod
@@ -43,9 +43,9 @@ Also, this module provides servo controlls, as well as a heap of other things. s
 
 my $pi=RPi::WiringPi->new();
 
-print "what pin is the pen's solonoid on (0 for default)?";
+#print "what pin is the pen's solonoid on (0 for default)?";
 
-my $inpin=<>;
+my $inpin=0;#=<>;
 while ($inpin !~/^[0-9]+$/ or $inpin<0 or $inpin>40){
 	print "please input an interger between 0 and 40.";
 	$inpin=<>;
@@ -55,15 +55,15 @@ if($inpin==0){
 	$inpin=21;
 }
 my $pen=$pi->pin($inpin);
-$pen->mode(1);
+$pen->mode(OUTPUT);
 
 sub pendown{
-	$pen->write(1);	
+	$pen->write(ON);	
 	print "pen down\n";
 }
 
 sub penup{
-	$pen->write(0);
+	$pen->write(OFF);
 	print "pen up\n";
 }
 
